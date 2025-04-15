@@ -7,7 +7,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
-vim.g.have_nerd_font = false
+vim.g.have_nerd_font = true
 
 -- [[ Setting options ]]
 -- See `:help vim.opt`
@@ -17,7 +17,8 @@ vim.g.have_nerd_font = false
 -- Make line numbers default
 -- vim.opt.number = true
 -- You can also add relative line numbers, to help with jumping.
-vim.opt.relativenumber = true
+vim.wo.relativenumber = true
+vim.wo.number = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
@@ -514,7 +515,7 @@ require('lazy').setup({
         -- pyright = {},
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
-        --
+        --java-language-server = {},
         -- ts_ls = {},
 
         lua_ls = {
@@ -786,6 +787,27 @@ require('lazy').setup({
     end,
   },
 
+  -- lazygit
+  {
+    'kdheepak/lazygit.nvim',
+    lazy = false,
+    cmd = {
+      'LazyGit',
+      'LazyGitConfig',
+      'LazyGitCurrentFile',
+      'LazyGitFilter',
+      'LazyGitFilterCurrentFile',
+    },
+    -- optional for floating window border decoration
+    dependencies = {
+      'nvim-telescope/telescope.nvim',
+      'nvim-lua/plenary.nvim',
+    },
+    config = function()
+      require('telescope').load_extension 'lazygit'
+    end,
+  },
+
   {
     'stevearc/oil.nvim',
     ---@module 'oil'
@@ -798,13 +820,17 @@ require('lazy').setup({
     lazy = false,
   },
 
+  { 'MaximilianLloyd/ascii.nvim', requires = {
+    'MunifTanjim/nui.nvim',
+  } },
+
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     opts = {
-      ensure_installed = { 'bash', 'c', 'javascript', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
+      ensure_installed = { 'bash', 'c', 'javascript', 'java', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {
@@ -845,7 +871,7 @@ require('lazy').setup({
 
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
   { import = 'custom.plugins' },
-  --
+  --  { import = 'utils' },
   -- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
   -- Or use telescope!
   -- In normal mode type `<space>sh` then write `lazy.nvim-plugin`
