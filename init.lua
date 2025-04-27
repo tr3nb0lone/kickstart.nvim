@@ -504,7 +504,6 @@ require('lazy').setup({
       -- LSP servers and clients are able to communicate to each other what features they support.
       --  By default, Neovim doesn't support everything that is in the LSP specification.
       --  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
-      --  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
@@ -639,10 +638,7 @@ require('lazy').setup({
         },
       },
       'saadparwaiz1/cmp_luasnip',
-
       -- Adds other completion capabilities.
-      --  nvim-cmp does not ship with all sources by default. They are split
-      --  into multiple repos for maintenance purposes.
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-nvim-lsp-signature-help',
@@ -869,26 +865,18 @@ require('lazy').setup({
   -- place them in the correct locations.
 
   -- NOTE: Next step on your Neovim journey: Add/Configure additional plugins for Kickstart
-  --
-  --  Here are some example plugins that I've included in the Kickstart repository.
-  --  Uncomment any of the lines below to enable them (you will need to restart nvim).
-  --
-  -- require 'kickstart.plugins.debug',
+  require 'kickstart.plugins.debug',
   require 'kickstart.plugins.indent_line',
-  -- require 'kickstart.plugins.lint',
-  -- require 'kickstart.plugins.autopairs',
+  --  require 'kickstart.plugins.lint',
+  require 'kickstart.plugins.autopairs',
   require 'kickstart.plugins.neo-tree',
-  -- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
 
-  -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
+  -- NOTE: The import below can automatically add your own plugins from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
-
-  --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
+  -- Include all the configs under custom/plugins
   { import = 'custom.plugins' },
 }, {
   ui = {
-    -- If you are using a Nerd Font: set icons to an empty table which will use the
-    -- default lazy.nvim defined Nerd Font icons, otherwise define a unicode icons table
     icons = vim.g.have_nerd_font and {} or {
       cmd = '⌘',
       config = '🛠',
