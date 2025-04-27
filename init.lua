@@ -156,23 +156,12 @@ vim.opt.rtp:prepend(lazypath)
 
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
-  -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
-
+  -- the best nvim colorscheme!
   { 'bluz71/vim-moonfly-colors', name = 'moonfly', lazy = false, priority = 1000 },
 
   'saghen/blink.cmp',
-  -- the dashboard, powered with alpha
-  {
-    'goolord/alpha-nvim',
-    dependencies = {
-      'echasnovski/mini.icons',
-      'nvim-lua/plenary.nvim',
-    },
-    config = function()
-      require('alpha').setup(require('alpha.themes.theta').config)
-    end,
-  },
+
   { -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
     opts = {
