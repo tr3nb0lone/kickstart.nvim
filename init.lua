@@ -136,11 +136,9 @@ vim.opt.rtp:prepend(lazypath)
 --  You can press `?` in this menu for help. Use `:q` to close the window
 
 -- NOTE: Here is where you install your plugins.
-require('lazy').setup({
-  'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
-
-  -- the best nvim colorscheme!
-  { 'bluz71/vim-moonfly-colors', name = 'moonfly', lazy = false, priority = 1000 },
+require('lazy').setup {
+  -- Detect tabstop and shiftwidth automatically
+  'tpope/vim-sleuth',
 
   'saghen/blink.cmp',
 
@@ -158,32 +156,13 @@ require('lazy').setup({
     },
   },
 
-  { -- You can easily change to a different colorscheme.
-    -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-    'folke/tokyonight.nvim',
-    priority = 1000, -- Make sure to load this before all the other start plugins.
-    config = function()
-      ---@diagnostic disable-next-line: missing-fields
-      require('tokyonight').setup {
-        styles = {
-          comments = { italic = false }, -- Disable italics in comments
-        },
-      }
-
-      -- Load the colorscheme here.
-      vim.cmd.colorscheme 'moonfly'
-    end,
-  },
-
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
 
   -- VimBEgood
   { 'ThePrimeagen/vim-be-good' },
 
-  { 'MaximilianLloyd/ascii.nvim', requires = {
-    'MunifTanjim/nui.nvim',
-  } },
+  { 'MaximilianLloyd/ascii.nvim', requires = { 'MunifTanjim/nui.nvim' } },
 
   -- NOTE: Next step on your Neovim journey: Add/Configure additional plugins for Kickstart
   -- this includes all the available plugins that came along Kickstart.
@@ -195,25 +174,9 @@ require('lazy').setup({
   -- NOTE: The import below can automatically add your own plugins from `lua/custom/plugins/*.lua`
   -- Include all the configs under custom/plugins
   { import = 'custom.plugins' },
-}, {
-  ui = {
-    icons = vim.g.have_nerd_font and {} or {
-      cmd = '⌘',
-      config = '🛠',
-      event = '📅',
-      ft = '📂',
-      init = '⚙',
-      keys = '🗝',
-      plugin = '🔌',
-      runtime = '💻',
-      require = '🌙',
-      source = '📄',
-      start = '🚀',
-      task = '📌',
-      lazy = '💤 ',
-    },
-  },
-})
+}
+
+require 'keymaps.keymaps'
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
