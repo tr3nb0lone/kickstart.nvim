@@ -481,16 +481,24 @@ return {
 
     -- The katana Ascii art:
     dashboard.section.header.val = {
-      [[                          ]],
-      [[                          ]],
-      [[                          ]],
-      [[                          ]],
-      [[                          ]],
       [[ ,_._._._._._._._._|____________________________________________________________, ]],
       [[ |_|_|_|_|_|_|_|_|_|___________________________________________________________/ ]],
       [[                   !                                                         ]],
-      [[                          ]],
-      [[                          ]],
+      [[                                                                      Hebrews 4:12]],
+      [[ 12   For the word of God is alive and active. Sharper than any double-edged sword,]],
+      [[      it penetrates even to dividing soul and spirit, joints and marrow; ]],
+      [[      it judges the thoughts and attitudes of the heart. ]],
+      [[                                                                              ]],
+      [[                                                                              ]],
+      [[                                                                              ]],
+      [[                                                                              ]],
+      [[                                                                              ]],
+      [[                                                                              ]],
+      [[                                                                              ]],
+      [[                                                                              ]],
+      [[                                                                              ]],
+      [[                                                                              ]],
+      [[                                                                              ]],
     }
 
     dashboard.section.buttons.val = {
